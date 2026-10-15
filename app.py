@@ -126,7 +126,7 @@ with st.sidebar:
     if opcion_menu == "Detección YOLOv5":
         st.markdown("""
             <h3 style='color: #38bdf8; font-size: 1rem; display: flex; align-items: center; gap: 8px;'>
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M1220a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M20 12h2"/><path d="M2 12h2"/></svg>
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M20 12h2"/><path d="M2 12h2"/></svg>
                 Parámetros de Detección
             </h3>
         """, unsafe_allow_html=True)
@@ -208,49 +208,4 @@ if opcion_menu == "Detección YOLOv5":
                     category_conf  = {}
 
                     for box in boxes:
-                        cat  = int(box.cls.item())
-                        conf = float(box.conf.item())
-                        category_count[cat] = category_count.get(cat, 0) + 1
-                        category_conf.setdefault(cat, []).append(conf)
-
-                    data = [
-                        {
-                            "Categoría":          label_names[cat],
-                            "Cantidad":           count,
-                            "Confianza Promedio": f"{np.mean(category_conf[cat]):.2f}"
-                        }
-                        for cat, count in category_count.items()
-                    ]
-
-                    df = pd.DataFrame(data)
-                    st.dataframe(df, use_container_width=True)
-                    st.bar_chart(df.set_index("Categoría")["Cantidad"])
-                else:
-                    st.info("No se detectaron objetos en el campo de visión con los parámetros actuales.")
-                    st.caption("Sugerencia: Reduce la 'Confianza mínima' en el panel lateral.")
-                
-                st.markdown("</div>", unsafe_allow_html=True)
-    else:
-        st.error("Error crítico: No se pudo inicializar el modelo YOLOv5.")
-
-# 6. MÓDULO 2: TEACHABLE MACHINE (PRÓXIMAMENTE)
-elif opcion_menu == "Teachable Machine (Gestos)":
-    st.markdown("""
-        <div class="glass-card" style="text-align: center; padding: 40px;">
-            <h1 class="gradient-text" style="justify-content: center;">
-                <svg class="icon-svg" style="width: 36px; height: 36px;" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
-                Reconocimiento de Gestos
-            </h1>
-            <p class="sub-text" style="font-size: 1.1rem; margin-top: 10px;">
-                Módulo preparado para conectar el modelo clasificador de <b>Teachable Machine</b>.
-            </p>
-            <hr style="border-color: rgba(56, 189, 248, 0.2); margin: 25px 0;">
-            <p style="color: #38bdf8;">
-                📌 En la siguiente entrega cargaremos los archivos <code>keras_model.h5</code> y <code>labels.txt</code> en este módulo.
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
-
-# Footer informativo
-st.markdown("---")
-st.
+                        cat
